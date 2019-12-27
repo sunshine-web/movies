@@ -1,5 +1,8 @@
 <import src="./stars/stars"/>
 <template name="item">
-  <text class="item">item</text>
-  <template is="stars"></template>
+  <view class="item">
+    <image class="post" src='./img/cart.jpg'></image>
+    <text class="name">后来的我们</text>
+    <template is="stars"></template>
+  </view>
 </template>

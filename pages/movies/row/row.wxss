@@ -1,4 +1,16 @@
 @import './item/item';
 .row{
-  color: skyblue;
+ margin-bottom: 20rpx;
+}
+.row .head{
+  padding: 30rpx 20rpx 22rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.row .head .hot{
+  font-size: 24rpx;
+}
+.row .head .more{
+  font-size: 24rpx;
+  color: #1f4ba5;
 }

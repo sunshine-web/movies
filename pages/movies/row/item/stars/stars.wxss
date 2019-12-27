@@ -1,3 +1,16 @@
 .stars{
-  color: skyblue
+  display: flex;
+  align-items: center;
+}
+.stars .star{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 3rpx;
+}
+.stars .star:last-child{
+  margin-right: 0;
+}
+.stars .score{
+  margin-left: 24rpx;
+  color: #1f3463;
 }

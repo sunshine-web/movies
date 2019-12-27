@@ -1,3 +1,10 @@
 <template name="stars">
-  <text class="stars">stars</text>
+  <view class="stars">
+    <image class="star" src='./img/stars/star24_on@2x.png'></image>
+    <image class="star" src='./img/stars/star24_on@2x.png'></image>
+    <image class="star" src='./img/stars/star24_on@2x.png'></image>
+    <image class="star" src='./img/stars/star24_on@2x.png'></image>
+    <image class="star" src='./img/stars/star24_on@2x.png'></image>
+    <text class="score">10</text>
+  </view>
 </template>

@@ -1,5 +1,12 @@
 <import src="./item/item"/>
 <template name="row">
-  <text class="row">row</text>
-  <template is="item"></template>
+  <view class="row">
+    <view class="head">
+      <text class="hot">正在热映</text>
+      <text class="more">更多 ></text>
+    </view>
+    <template is="item"></template>
+    <template is="item"></template>
+    <template is="item"></template>
+  </view>
 </template>

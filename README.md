@@ -22,3 +22,9 @@ color: pink;
 movies.wxss
 @import './row/row';
 ````
+## 2.搭建静态页面
+- pages->movies->row->item->stars 评星模板
+- pages->movies->row->item 一个电影的显示形式
+- pages->movies->row 一行电影的显示形式+头部
+- pages->movies 三行
+- 主要用flex+rpx

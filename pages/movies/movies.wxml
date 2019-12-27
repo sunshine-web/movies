@@ -1,3 +1,7 @@
 <!--pages/movies/movies.wxml-->
 <import src="./row/row"/>
-<template is="row"></template>
+<view class="movies">
+  <template is="row"></template>
+  <template is="row"></template>
+  <template is="row"></template>
+</view>

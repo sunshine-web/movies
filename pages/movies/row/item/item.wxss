@@ -1,4 +1,15 @@
 @import './stars/stars';
 .item{
-  color: skyblue;
+  margin: 0 22rpx;
+  display: inline-flex;
+  flex-direction: column;
+}
+.item .post{
+  width: 200rpx;
+  height: 270rpx;
+  margin-bottom: 20rpx;
+}
+.item .name{
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
 }
