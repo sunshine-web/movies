@@ -1,0 +1,5 @@
+<import src="./item/item"/>
+<template name="row">
+  <text class="row">row</text>
+  <template is="item"></template>
+</template>

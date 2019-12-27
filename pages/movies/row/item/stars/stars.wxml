@@ -1,0 +1,3 @@
+<template name="stars">
+  <text class="stars">stars</text>
+</template>

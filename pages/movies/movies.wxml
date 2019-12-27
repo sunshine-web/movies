@@ -1,0 +1,3 @@
+<!--pages/movies/movies.wxml-->
+<import src="./row/row"/>
+<template is="row"></template>
