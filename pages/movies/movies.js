@@ -1,66 +1,40 @@
 // pages/movies/movies.js
+let index = -1;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    movies:[]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    this.getMovies('http://t.yushu.im/v2/movie/in_theaters?start=0&count=3',"正在热映")
+    this.getMovies('http://t.yushu.im/v2/movie/coming_soon?start=0&count=3',"即将上映")
+    this.getMovies('http://t.yushu.im/v2/movie/top250?start=0&count=3',"豆瓣Top250")
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getMovies(url,type){
+    wx.request({
+      url: url,
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: (res) => {
+        this.finalData(res.data,type)
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  finalData(data,type){
+    let movies = [];
+    movies = data.subjects.map((item)=>({
+      postImgUrl:item.images.large,
+      name: item.original_title,
+      score: item.rating.average
+    }))
+    index++;
+    this.setData({
+      [`movies[${index}]`]:{
+        type,
+        movies
+      }
+    })
   }
 })

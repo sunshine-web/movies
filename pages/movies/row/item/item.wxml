@@ -1,8 +1,8 @@
 <import src="./stars/stars"/>
 <template name="item">
   <view class="item">
-    <image class="post" src='./img/cart.jpg'></image>
-    <text class="name">后来的我们</text>
-    <template is="stars"></template>
+    <image class="post" src='{{postImgUrl}}'></image>
+    <text class="name">{{name}}</text>
+    <template is="stars" data="{{score}}"></template>
   </view>
 </template>

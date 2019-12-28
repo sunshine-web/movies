@@ -2,11 +2,9 @@
 <template name="row">
   <view class="row">
     <view class="head">
-      <text class="hot">正在热映</text>
+      <text class="hot">{{type}}</text>
       <text class="more">更多 ></text>
     </view>
-    <template is="item"></template>
-    <template is="item"></template>
-    <template is="item"></template>
+    <template is="item" wx:for="{{movies}}" data="{{...item}}" wx:key="index"></template>
   </view>
 </template>

@@ -1,7 +1,5 @@
 <!--pages/movies/movies.wxml-->
 <import src="./row/row"/>
 <view class="movies">
-  <template is="row"></template>
-  <template is="row"></template>
-  <template is="row"></template>
+  <template is="row" wx:for="{{movies}}" data="{{...item}}" wx:key="index"></template>
 </view>

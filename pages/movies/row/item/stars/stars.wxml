@@ -5,6 +5,6 @@
     <image class="star" src='./img/stars/star24_on@2x.png'></image>
     <image class="star" src='./img/stars/star24_on@2x.png'></image>
     <image class="star" src='./img/stars/star24_on@2x.png'></image>
-    <text class="score">10</text>
+    <text class="score">{{score}}</text>
   </view>
 </template>

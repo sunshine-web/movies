@@ -12,4 +12,8 @@
 .item .name{
   font-size: 24rpx;
   margin-bottom: 16rpx;
+  width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
