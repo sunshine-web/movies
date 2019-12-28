@@ -1,6 +1,7 @@
 @import './item/item';
 .row{
  margin-bottom: 20rpx;
+ background-color: #ffffff;
 }
 .row .head{
   padding: 30rpx 20rpx 22rpx;

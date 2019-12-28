@@ -33,12 +33,14 @@ const getStarsArr = stars=>{
 }
 
 const http = (url, callBack,...arg)=>{
+  wx.showNavigationBarLoading();
   wx.request({
     url: url,
     header: {
       'content-type': 'application/json' // 默认值
     },
     success: (res) => {
+      wx.hideNavigationBarLoading();
       callBack(res.data,...arg)
     }
   })

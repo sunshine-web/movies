@@ -1,2 +1,5 @@
 /* pages/movies/movies.wxss */
 @import './row/row';
+.movies{
+  background-color: #f2f2f2;
+}

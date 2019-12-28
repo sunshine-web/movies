@@ -112,4 +112,15 @@ movies:[
   - 在more.js中的onLoad根据type发送请求，传个回调，把请求回来的数据做整理然后改仓库中的movies，注意构建的数据结构只有一层。
   - 此时点击更多可以出现请求回来的电影数据。但是星星没有显示，在stars.wxml中把路径改成/pages...从pages下去找星星的图片，在模板中都可以显示。
   - 测试：点击更多效果正常。
-  
+## 6.上拉加载更多
+- 在more下新建模板grid，便于复用。把more.wxml中的代码都放在grid中，测试：效果正确。
+- 点击更多出来的电影详情居中，用display控制主侧轴居中并且换行。
+  - 在grid.wxml中判断movies.length对3求余，如果为1，补两个template。如果为2补一个template。
+- 上官网看API，上拉加载更多用onReachBottom。
+  - 在more.js中写onReachBottom函数。根据currentUrl和start count发请求。
+  - 在data中定义currentUrl，在onLoad中发请求时修改仓库中的currentUrl。
+  - 在onReachBottom中发请求也调用了cb，把以前的movies和重新请求回来的20个moives用concat连接起来。在setData中也要修改start的值。
+  - 测试：每次触动底部的时候都会新加载数据展示。
+- 在util.js中的http中在发请求之前导航栏显示loading图标，wx.showNavigationBarLoading();
+  - 在成功拿到数据的success中隐藏图标，wx.hideNavigationBarLoading();
+  - 测试：每次发请求拿数据时导航栏会显示loading图标。

@@ -1,2 +1,2 @@
 /* pages/movies/more/more.wxss */
-@import "../row/item/item";
+@import "./grid/grid";
