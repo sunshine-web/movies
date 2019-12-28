@@ -32,7 +32,20 @@ const getStarsArr = stars=>{
   return arr;
 }
 
+const http = (url, callBack,...arg)=>{
+  wx.request({
+    url: url,
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success: (res) => {
+      callBack(res.data,...arg)
+    }
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
-  getStarsArr: getStarsArr
+  getStarsArr: getStarsArr,
+  http: http
 }

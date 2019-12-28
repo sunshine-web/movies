@@ -82,3 +82,34 @@ movies:[
 - 在app.js中定义BASEURL。
 - 在movies.js中引入const app = getApp();
 - 在发请求那使用公共的BASEURL。
+## 5.点击更多跳转电影详情页请求数据
+- 在movies下新建more，实现点击更多跳转到more。
+  - 在row.wxml中给更多绑定点击事件bind:tap="toMore"
+  - 在movies.js中写函数toMore
+  ````
+  toMore(){
+    wx.navigateTo({
+      url: '/pages/movies/more/more',
+    })
+  }
+  ````
+  - 测试：点击更多跳转到more
+  - 上面的导航栏名称可以在.json文件中用"navigationBarTitleText": "硅谷电影"进行设置。
+- 实现点击正在热映时上面的导航显示正在热映。
+  - 在row.wxml中用data-type="{{type}}把type从更多上传出去。
+  - 在点击事件toMore中用query带着url: `/pages/movies/more/more?type=${ev.currentTarget.dataset.type}`
+  - 在more.js中的onLoad上可以用query接，其它生命周期不可以。
+  - 设置导航栏名称
+  ````
+   wx.setNavigationBarTitle({
+     title: query.type,
+   })
+  ````
+  - 测试：可以设置好导航栏名称，但是点进去设置的过早，会出现导航栏和内容区看似分离的效果。
+  - 解决方案：在data中定义title，在onLoad中用setData改title，在onReady中设置。
+- 在more.js中发送请求，把整个数据拿过来。
+  - movies.js中getMovies是发请求的，把它写在工具类utils中，改名http，暴露出去，在movie.js中先使用，效果还是和以前一样。
+  - 在more.js中的onLoad根据type发送请求，传个回调，把请求回来的数据做整理然后改仓库中的movies，注意构建的数据结构只有一层。
+  - 此时点击更多可以出现请求回来的电影数据。但是星星没有显示，在stars.wxml中把路径改成/pages...从pages下去找星星的图片，在模板中都可以显示。
+  - 测试：点击更多效果正常。
+  

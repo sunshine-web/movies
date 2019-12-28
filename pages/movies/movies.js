@@ -10,20 +10,9 @@ Page({
 
   onLoad: function (options) {
     const BASEURL = app.globalData.BASEURL;
-    this.getMovies(`${BASEURL}/v2/movie/in_theaters?start=0&count=3`,"正在热映")
-    this.getMovies(`${BASEURL}/v2/movie/coming_soon?start=0&count=3`,"即将上映")
-    this.getMovies(`${BASEURL}/v2/movie/top250?start=0&count=3`,"豆瓣Top250")
-  },
-  getMovies(url,type){
-    wx.request({
-      url: url,
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: (res) => {
-        this.finalData(res.data,type)
-      }
-    })
+    util.http(`${BASEURL}/v2/movie/in_theaters?start=0&count=3`, this.finalData,"正在热映")
+    util.http(`${BASEURL}/v2/movie/coming_soon?start=0&count=3`, this.finalData,"即将上映")
+    util.http(`${BASEURL}/v2/movie/top250?start=0&count=3`, this.finalData,"豆瓣Top250")
   },
   finalData(data,type){
     let movies = [];
@@ -40,6 +29,11 @@ Page({
         type,
         movies
       }
+    })
+  },
+  toMore(ev){
+    wx.navigateTo({
+      url: `/pages/movies/more/more?type=${ev.currentTarget.dataset.type}`,
     })
   }
 })

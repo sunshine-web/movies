@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/movies/movies",
-    "pages/atguigu/atguigu"
+    "pages/atguigu/atguigu",
+    "pages/movies/more/more"
   ],
   "window": {
     "backgroundTextStyle": "light",

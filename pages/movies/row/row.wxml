@@ -3,7 +3,7 @@
   <view class="row">
     <view class="head">
       <text class="hot">{{type}}</text>
-      <text class="more">更多 ></text>
+      <text class="more" bind:tap="toMore" data-type="{{type}}">更多 ></text>
     </view>
     <template is="item" wx:for="{{movies}}" data="{{...item}}" wx:key="index"></template>
   </view>
