@@ -1,4 +1,6 @@
 // pages/movies/movies.js
+const util = require("../../utils/util.js");
+const app = getApp();
 let index = -1;
 Page({
 
@@ -7,9 +9,10 @@ Page({
   },
 
   onLoad: function (options) {
-    this.getMovies('http://t.yushu.im/v2/movie/in_theaters?start=0&count=3',"正在热映")
-    this.getMovies('http://t.yushu.im/v2/movie/coming_soon?start=0&count=3',"即将上映")
-    this.getMovies('http://t.yushu.im/v2/movie/top250?start=0&count=3',"豆瓣Top250")
+    const BASEURL = app.globalData.BASEURL;
+    this.getMovies(`${BASEURL}/v2/movie/in_theaters?start=0&count=3`,"正在热映")
+    this.getMovies(`${BASEURL}/v2/movie/coming_soon?start=0&count=3`,"即将上映")
+    this.getMovies(`${BASEURL}/v2/movie/top250?start=0&count=3`,"豆瓣Top250")
   },
   getMovies(url,type){
     wx.request({
@@ -27,7 +30,9 @@ Page({
     movies = data.subjects.map((item)=>({
       postImgUrl:item.images.large,
       name: item.original_title,
-      score: item.rating.average
+      score: item.rating.average,
+      stars: util.getStarsArr(item.rating.stars)
+      // stars: ["ON","ON","HALF","OFF","OFF"]
     }))
     index++;
     this.setData({
