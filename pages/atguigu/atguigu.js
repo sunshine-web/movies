@@ -11,9 +11,10 @@ Page({
       this.setData(data)
     },100)
   },
-  handleTap(){
+  handleTap(event){
+    // console.log(event);
     wx.navigateTo({
-      url: '/pages/atguigu/detail/detail',
+      url: `/pages/atguigu/detail/detail?id=${event.currentTarget.dataset.listId}`,
     })
   }
 })

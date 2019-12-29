@@ -187,3 +187,20 @@ movies:[
 - 在detail.wxml中写结构。
   - 在detail.wxss中写样式。
   - 测试：跳转和静态页搭正常
+## 14.硅谷主页到详情页数据传递
+- 实现点击哪个跳转到哪个详情页面
+  - 在atguigu.wxml中view上传个自定义属性data-list-id="{{item.newsid}}"
+  - 在atguigu.js中handleTap函数中形参event，打印event，可以在currentTarget->dataset看到listId:1。把id拼到url上。
+  - 在url上传的id可以在detail.js中的onLoad函数中用query.id拿到。
+  - 在detail.js拿到id,根据id去发请求。引入data.js,在onLoad中找数据中的id和query.id相同的数据，放到仓库中。
+  ````
+  setTimeout(()=>{
+    const detailData = data.templateDatas.find((item)=>{
+      return item.newsid === +query.id;//item.newsid是数字，query.id是字符串，所以用+转换一下
+    })
+    this.setData(detailData)
+  },100)
+  ````
+  - detail.wxml页面中可以直接使用setData中的数据。
+  - 测试：点击之后成功跳转到详情页。
+  
