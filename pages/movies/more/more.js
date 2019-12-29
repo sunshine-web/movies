@@ -45,7 +45,7 @@ Page({
         break;
     }
   },
-  cb(data, isFirstReq){
+  cb(data){
     let movies = [];
     movies = data.subjects.map((item) => ({
       postImgUrl: item.images.large,
@@ -58,7 +58,7 @@ Page({
       this.setData({
         start: 0
       })
-      console.log(1);
+      console.log(1);//应提示没有新数据了，再次刷新可看以前的数据
     }else{
       this.setData({
         start: this.data.start + this.data.count

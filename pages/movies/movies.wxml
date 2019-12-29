@@ -1,5 +1,17 @@
 <!--pages/movies/movies.wxml-->
 <import src="./row/row"/>
+<import src="./more/grid/grid" />
 <view class="movies">
-  <template is="row" wx:for="{{movies}}" data="{{...item}}" wx:key="index"></template>
+  <view class="searchMap">
+    <icon class="search" type="search" size="22" color="#405f80"></icon>
+    <input class="text" placeholder="请输入名称..." placeholder-class="placeholder" bindfocus="handleFocus" bindconfirm="handleConfirm" value="{{value}}"></input>
+    <icon class="clear" type="clear" size="22" color="#405f80" wx:if="{{showGrids}}" bind:tap="handleClear"></icon>
+  </view>
+
+  <block wx:if="{{showRows}}">
+    <template is="row" wx:for="{{movies}}" data="{{...item}}" wx:key="index"></template>
+  </block>
+  <block wx:if="{{showGrids}}">
+    <template is="grid" data="{{movies:searchMovies}}"></template>
+  </block>
 </view>

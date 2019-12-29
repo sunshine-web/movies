@@ -3,3 +3,25 @@
 .movies{
   background-color: #f2f2f2;
 }
+.movies .searchMap{
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  width: 100%;
+}
+.movies .searchMap .search{
+  margin-left: 10rpx;
+}
+.movies .searchMap .text{
+  width: 600rpx;
+  height: 100%;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+}
+.movies .searchMap .placeholder{
+  font-size: 28rpx;
+  color: #d1d1d1;
+}
+.movies .searchMap .clear{
+  margin: 0 10rpx;
+}

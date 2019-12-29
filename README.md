@@ -133,4 +133,20 @@ movies:[
     - 每次下拉也会出来新数据，当数据加载完的时候，给用户提示(未完成提示)。
     - 上拉加载完数据就没有了，下拉加载完会从第一条开始显示。
     - 原因：上拉的时候movies不会为空，因为一直在加数据。下拉的时候要把movies先置为0，才能显示新数据，就会存在movies为空的情况，解决是从第0条开始显示。
-  
+## 8.搜索功能
+- 在movies.wxml把grid引入进来，用block包住，showRows和showGrids只有一个能显示。
+- 写上面的search 输入框 clear结构和样式。
+- 在movies.js的data中定义showRows和showGrids，clear图标和grid显示同步。
+- 测试：结构样式已经出来，默认grid和clear图标不显示。
+- 实现获取焦点row不显示，grid和clear图标显示。
+  - 给input绑定获取焦点的事件bindfocus="handleFocus" 
+  - 在searchMovies.js中写函数，改变仓库中的状态。
+- 实现点击clear图标row显示，grid和clear图标不显示。
+  - 给clear图标绑定点击事件bind:tap="handleClear"
+  - 在movies.js中写函数，改变仓库中的状态。
+- 实现按回车键根据输入框中的内容搜索数据。
+  - 给输入框绑定事件bindconfirm="handleConfirm"
+  - 在仓库中初始化数据value，点击clear图标在handleClear把value清空，在movies.wxml中value="{{value}}"。
+  - 在movies.js中写handleConfirm函数，根据输入的数据发请求，修改仓库中的searchMovies。在movies.wxml中把数据传给grid。在handleClear把searchMovies清空。
+  - 测试：在输入框中输入要搜索的电影或者演员，会出现相应的作品，点击clear图标回到movies页面。
+
