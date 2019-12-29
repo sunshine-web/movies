@@ -10,5 +10,10 @@ Page({
     setTimeout(()=>{
       this.setData(data)
     },100)
+  },
+  handleTap(){
+    wx.navigateTo({
+      url: '/pages/atguigu/detail/detail',
+    })
   }
 })

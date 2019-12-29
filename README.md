@@ -180,3 +180,10 @@ movies:[
 - 在atguigu->goodness->goodness.wxml goodness.wxss
 - 把结构和样式都拆过去。
 - 数据传递，在atguigu.wxml中data="{{...item}}，在goodness.wxml可以直接使用title title2 src
+## 13.优势详情页静态页面搭建
+- 在atguigu下新建detail页，实现点击下面的优势跳到指定的详情页面。
+  - 在atguigu.wxml中view上绑定点击事件bind:tap="handleTap"。
+  - 在atguigu.js中写handleTap函数，跳到detail页。
+- 在detail.wxml中写结构。
+  - 在detail.wxss中写样式。
+  - 测试：跳转和静态页搭正常

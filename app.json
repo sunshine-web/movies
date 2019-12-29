@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/atguigu/atguigu",
+    "pages/atguigu/detail/detail",
     "pages/movies/movies",
     "pages/movies/more/more"
   ],
@@ -10,13 +11,13 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "tabBar":{
-    "list":[
+  "tabBar": {
+    "list": [
       {
-        "pagePath":"pages/movies/movies",
-        "text":"硅谷影院",
-        "iconPath":"/pages/movies/img/movie.png",
-        "selectedIconPath":"/pages/movies/img/movie-hover.png"
+        "pagePath": "pages/movies/movies",
+        "text": "硅谷影院",
+        "iconPath": "/pages/movies/img/movie.png",
+        "selectedIconPath": "/pages/movies/img/movie-hover.png"
       },
       {
         "pagePath": "pages/atguigu/atguigu",
@@ -25,11 +26,11 @@
         "selectedIconPath": "/pages/movies/img/atguigu-hover.png"
       }
     ],
-    "color":"#808080",
-    "selectedColor":"#000000",
-    "backgroundColor":"#ffffff",
-    "borderStyle":"black",
-    "position":"bottom"
+    "color": "#808080",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

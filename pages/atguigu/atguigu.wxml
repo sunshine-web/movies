@@ -33,7 +33,7 @@
     </view>
   </view>
  </view>
- <view wx:for="{{templateDatas}}" wx:key="item.newsid">
+ <view wx:for="{{templateDatas}}" wx:key="item.newsid" bind:tap="handleTap">
   <template is="goodness" data="{{...item}}"></template>
  </view>
 <view class="footer">
