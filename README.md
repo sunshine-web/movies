@@ -157,4 +157,22 @@ movies:[
 - 在atguigu.wxml中写结构。
 - 在atguigu.wxss中写样式。
 - 注意：.atguigu .course-list .title text:nth-child(1)是选中第一个text。
-
+## 11.硅谷主页数据动态化
+- 用mock的数据。
+- 数据在atguigu->data->data.js。
+- 在atguigu.js中引入data.js，在onLoad中把数据请求回来。请求回来的数据可以在微信开发者工具AppData中看到。
+    ````
+    onLoad: function (options) {
+        setTimeout(()=>{
+          this.setData(data)
+        },100)
+      }
+    ````
+- 动态化企业级实战化课程体系中的数据。遍历用wx:for  只能用item和index。注意图片展示的思路。
+    ````
+    <view class="item" wx:for="{{listData.courses}}" wx:key="index">
+      <image src="{{listData.courseUrls[index]}}"></image>
+      <text>{{item}}</text>
+    </view>
+    ````
+- 动态化7大优势傲视群雄及下面的数据。wx:for wx:key item

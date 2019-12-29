@@ -22,48 +22,22 @@
  </swiper>
  <view class="course-list">
   <view class="title">
-    <text>企业级实战化课程体系</text>
-    <text>硅谷名师全程面授</text>
+    <text>{{listData.title}}</text>
+    <text>{{listData.title2}}</text>
   </view>
   <view class="list">
-    <view class="item">
-      <image src="/pages/atguigu/img/list/java.png"></image>
-      <text>java2</text>
-    </view>
-    <view class="item">
-      <image src="/pages/atguigu/img/list/HTML5.png"></image>
-      <text>H5前端</text>
-    </view>
-    <view class="item">
-      <image src="/pages/atguigu/img/list/bigData.png"></image>
-      <text>大数据</text>
-    </view>
-    <view class="item">
-      <image src="/pages/atguigu/img/list/Python.png"></image>
-      <text>人工智能</text>
-    </view>
-    <view class="item">
-      <image src="/pages/atguigu/img/list/bitcoin.png"></image>
-      <text>区块链</text>
+    <view class="item" wx:for="{{listData.courses}}" wx:key="index">
+      <image src="{{listData.courseUrls[index]}}"></image>
+      <text>{{item}}</text>
     </view>
   </view>
  </view>
- <view class="advantage">
+ <view class="advantage" wx:for="{{templateDatas}}" wx:key="item.newsid">
   <view class="title">
-    <text>7大优势傲视群雄</text>
-    <text>老学员感言:来尚硅谷之前愁工作，尚硅谷毕业之后愁选择</text>
+    <text>{{item.title}}</text>
+    <text>{{item.title2}}</text>
   </view>
-  <image src="/pages/atguigu/img/goodness/goodness.png"></image>
-  <view class="title">
-    <text>90%的学员来自学长推荐</text>
-    <text>期期爆满 一座难求</text>
-  </view>
-  <image src="/pages/atguigu/img/pic/student.jpg"></image>
-  <view class="title">
-    <text>我该说点什么好啊</text>
-    <text>假数据真难造</text>
-  </view>
-  <image src="/pages/atguigu/img/test/test.jpg"></image>
+  <image src="{{item.src}}"></image>
  </view>
 <view class="footer">
   <view class="left">
