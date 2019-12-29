@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/movies/movies",
     "pages/atguigu/atguigu",
+    "pages/movies/movies",
     "pages/movies/more/more"
   ],
   "window": {

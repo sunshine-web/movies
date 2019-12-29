@@ -22,13 +22,13 @@ color: pink;
 movies.wxss
 @import './row/row';
 ````
-## 2.搭建静态页面
+## 2.搭建硅谷影院静态页面
 - pages->movies->row->item->stars 评星模板
 - pages->movies->row->item 一个电影的显示形式
 - pages->movies->row 一行电影的显示形式+头部
 - pages->movies 三行
 - 主要用flex+rpx
-## 3.电影主页数据传递
+## 3.硅谷影院主页数据传递
 - 在movies.js中onLoad进行发送ajax请求。
 - 使用的http地址，要去小程序官网->基本设置->前往填写->配置服务器(开发设置)->服务器域名(request合法域名)。微信开发者工具->详情->不校验合法域名，业务域名打上对号。
 - 发送请求拿到数之后，构建数据结构。
@@ -64,7 +64,7 @@ movies:[
 - 在row.wxml中可以进行展示type，wx:for="{{movies}}" data="{{...item}}" wx:key="index"。这个movies是里面的movies。
 - 在item.wxml中可以进行展示海报和电影名字。data="{{score}}"把评分继续传递下去。
 - 在stars.wxml中可以进行展示评分。{{score}}
-## 4.电影主页评星展示
+## 4.硅谷影院主页评星展示
 - 在movies.js中构建数据结构时加个stars。先写成stars: ["ON","ON","HALF","OFF","OFF"]进行测试。
 - 在item.wxml中data="{{score,stars}}"传递下去。
 - 在stars.wxml中对stars这个数据进行遍历。image星星是否显示用wx:if来控制。
@@ -152,4 +152,9 @@ movies:[
 ## 9.tabBar
 - 在app.json中写"tabBar":{}进行配置底部的tabBar。
 - 测试：点击硅谷影院跳到硅谷影院，点击硅谷主页跳到硅谷主页。
+## 10.搭建硅谷主页静态页面
+- 最上面的导航栏文字在atguigu.json中设置。
+- 在atguigu.wxml中写结构。
+- 在atguigu.wxss中写样式。
+- 注意：.atguigu .course-list .title text:nth-child(1)是选中第一个text。
 

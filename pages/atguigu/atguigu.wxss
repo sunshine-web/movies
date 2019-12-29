@@ -1,1 +1,126 @@
 /* pages/atguigu/atguigu.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.atguigu{
+  width: 100%;
+  height: 100%;
+  background-color: rgb(247,247,247);
+}
+.atguigu .header{
+  width: 750rpx;
+  height: 113rpx; 
+}
+.atguigu .header image{
+  width: 100%;
+  height: 100%;
+}
+.atguigu swiper{
+  width: 750rpx;
+  height: 375rpx;
+}
+.atguigu swiper image{
+  width: 100%;
+  height: 100%;
+}
+.atguigu .course-list{
+  width: 750rpx;
+  height: 400rpx;
+  margin-top: 20rpx;
+  background-color: white;
+}
+.atguigu .course-list .title{
+  width: 100%;
+  padding-top: 33rpx;
+  padding-bottom: 38rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.atguigu .course-list .title text:nth-child(1){
+    font-size: 44rpx;
+    margin-bottom: 20rpx;
+}
+.atguigu .course-list .title text:nth-child(2){
+    font-size: 29rpx;
+}
+.atguigu .course-list .list{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.atguigu .course-list .list .item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.atguigu .course-list .list .item image{
+  width: 122rpx;
+  height: 122rpx;
+}
+.atguigu .course-list .list .item text{
+  font-size: 25rpx;
+}
+.atguigu .advantage{
+  width: 750rpx;
+  margin-bottom: 33rpx;
+}
+.atguigu .advantage .title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 33rpx;
+  padding-bottom: 38rpx;
+   background-color: rgb(247,247,247);
+}
+.atguigu .advantage .title text:nth-child(1){
+    font-size: 44rpx;
+    margin-bottom: 20rpx;
+}
+.atguigu .advantage .title text:nth-child(2){
+    font-size: 29rpx;
+}
+.atguigu .advantage image{
+  width: 750rpx;
+  height: 374rpx;
+  display: block;
+}
+.atguigu .footer{
+  width: 750rpx;
+  height: 330rpx;
+  background-color: rgb(51, 51, 51); 
+  display: flex;
+  overflow: hidden;
+}
+.atguigu .footer .left{
+  width: 264rpx;
+  height: 330rpx;
+  box-sizing:border-box;
+  margin: 20rpx 20rpx 0 20rpx;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.atguigu .footer .left image{
+  width: 264rpx;
+  height: 264rpx;
+}
+.atguigu .footer .right{
+  width: 486rpx;
+  height: 330rpx;
+  box-sizing:border-box;
+  margin: 15rpx 0 15rpx 0;
+  display: flex;
+  flex-direction: column;
+}
+.atguigu .footer .right .right-top{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 86rpx;
+  margin-top: 3rpx;
+}
+.atguigu .footer .right .right-bottom{
+  display: flex;
+  flex-direction: column;
+}

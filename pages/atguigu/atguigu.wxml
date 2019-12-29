@@ -1,2 +1,86 @@
 <!--pages/atguigu/atguigu.wxml-->
-<text>pages/atguigu/atguigu.wxml</text>
+<view class="atguigu">
+  <view class="header">
+    <image src="/pages/atguigu/img/header/top.jpg"></image>
+  </view>
+ <swiper indicator-dots="true" indicator-color="#adff2f" indicator-active-color="#87ceeb" autoplay="true" duration="2000" circular="true">
+  <swiper-item>
+    <image src="/pages/atguigu/img/swiper/1.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="/pages/atguigu/img/swiper/2.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="/pages/atguigu/img/swiper/3.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="/pages/atguigu/img/swiper/4.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="/pages/atguigu/img/swiper/5.jpg"></image>
+  </swiper-item>
+ </swiper>
+ <view class="course-list">
+  <view class="title">
+    <text>企业级实战化课程体系</text>
+    <text>硅谷名师全程面授</text>
+  </view>
+  <view class="list">
+    <view class="item">
+      <image src="/pages/atguigu/img/list/java.png"></image>
+      <text>java2</text>
+    </view>
+    <view class="item">
+      <image src="/pages/atguigu/img/list/HTML5.png"></image>
+      <text>H5前端</text>
+    </view>
+    <view class="item">
+      <image src="/pages/atguigu/img/list/bigData.png"></image>
+      <text>大数据</text>
+    </view>
+    <view class="item">
+      <image src="/pages/atguigu/img/list/Python.png"></image>
+      <text>人工智能</text>
+    </view>
+    <view class="item">
+      <image src="/pages/atguigu/img/list/bitcoin.png"></image>
+      <text>区块链</text>
+    </view>
+  </view>
+ </view>
+ <view class="advantage">
+  <view class="title">
+    <text>7大优势傲视群雄</text>
+    <text>老学员感言:来尚硅谷之前愁工作，尚硅谷毕业之后愁选择</text>
+  </view>
+  <image src="/pages/atguigu/img/goodness/goodness.png"></image>
+  <view class="title">
+    <text>90%的学员来自学长推荐</text>
+    <text>期期爆满 一座难求</text>
+  </view>
+  <image src="/pages/atguigu/img/pic/student.jpg"></image>
+  <view class="title">
+    <text>我该说点什么好啊</text>
+    <text>假数据真难造</text>
+  </view>
+  <image src="/pages/atguigu/img/test/test.jpg"></image>
+ </view>
+<view class="footer">
+  <view class="left">
+    <image src="/pages/atguigu/img/info/info.jpg"></image>
+    <text>硅谷官方微信:atguigu</text>
+  </view>
+  <view class="right">
+    <view class="right-top">
+      <text>校区：</text>
+      <text>北京昌平区宏福科技园综合楼3层(北京)</text>
+      <text>深圳市宝安区西部硅谷大厦B座3层(深圳)</text>
+    </view>
+    <view class="right-bottom">
+    <text>电话：</text>
+      <text>010-56253825(北京)</text>
+      <text>0755-85293825(深圳)</text>
+    </view>
+  </view>
+</view>
+</view>
