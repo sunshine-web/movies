@@ -149,4 +149,7 @@ movies:[
   - 在仓库中初始化数据value，点击clear图标在handleClear把value清空，在movies.wxml中value="{{value}}"。
   - 在movies.js中写handleConfirm函数，根据输入的数据发请求，修改仓库中的searchMovies。在movies.wxml中把数据传给grid。在handleClear把searchMovies清空。
   - 测试：在输入框中输入要搜索的电影或者演员，会出现相应的作品，点击clear图标回到movies页面。
+## 9.tabBar
+- 在app.json中写"tabBar":{}进行配置底部的tabBar。
+- 测试：点击硅谷影院跳到硅谷影院，点击硅谷主页跳到硅谷主页。
 
