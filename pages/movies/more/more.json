@@ -1,4 +1,7 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "硅谷电影"
+  "navigationBarTitleText": "硅谷影院",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#fffff0",
+  "backgroundTextStyle": "dark"
 }

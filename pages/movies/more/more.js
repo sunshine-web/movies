@@ -12,7 +12,13 @@ Page({
     count:20
   },
   onReachBottom(){
-    util.http(`${this.data.currentUrl}?start=${this.data.start}&count=${this.data.count}`,this.cb)
+    util.http(`${this.data.currentUrl}?start=${this.data.start}&count=${this.data.count}`, this.cb)
+  },
+  onPullDownRefresh(){
+    this.setData({
+      movies:[],
+    }),
+    util.http(`${this.data.currentUrl}?start=${this.data.start}&count=${this.data.count}`, this.cb)
   },
   onLoad: function (query) {
     this.setData({
@@ -39,7 +45,7 @@ Page({
         break;
     }
   },
-  cb(data){
+  cb(data, isFirstReq){
     let movies = [];
     movies = data.subjects.map((item) => ({
       postImgUrl: item.images.large,
@@ -48,9 +54,21 @@ Page({
       stars: util.getStarsArr(item.rating.stars)
     }))
     movies = this.data.movies.concat(movies)
+    if(movies.length === 0){
+      this.setData({
+        start: 0
+      })
+      console.log(1);
+    }else{
+      this.setData({
+        start: this.data.start + this.data.count
+      })
+    }
+    
     this.setData({
-      movies,
-      start:this.data.start+this.data.count
+      movies
+    }, () => {
+      wx.stopPullDownRefresh()//停止当前页面的下拉刷新
     })
   },
   onReady:function(){

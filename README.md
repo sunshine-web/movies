@@ -124,3 +124,13 @@ movies:[
 - 在util.js中的http中在发请求之前导航栏显示loading图标，wx.showNavigationBarLoading();
   - 在成功拿到数据的success中隐藏图标，wx.hideNavigationBarLoading();
   - 测试：每次发请求拿数据时导航栏会显示loading图标。
+## 7.下拉刷新
+- 在more.json中配置 "enablePullDownRefresh": true可以下拉。
+- 上官网看API，下拉刷新用onPullDownRefresh。
+  - 在more.js中写onPullDownRefresh函数。先把movies置为空，一次性请求20条数据。
+  - 在cb中判断如果movies.length为0，start就从0开始显示数据，否则就加上count。
+  - 测试：每次上拉可以刷新出来数据没有闪屏。
+    - 每次下拉也会出来新数据，当数据加载完的时候，给用户提示(未完成提示)。
+    - 上拉加载完数据就没有了，下拉加载完会从第一条开始显示。
+    - 原因：上拉的时候movies不会为空，因为一直在加数据。下拉的时候要把movies先置为0，才能显示新数据，就会存在movies为空的情况，解决是从第0条开始显示。
+  
