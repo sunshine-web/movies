@@ -1,0 +1,24 @@
+.advantage{
+  width: 750rpx;
+  height: 580rpx;
+}
+.advantage .title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 33rpx;
+  padding-bottom: 38rpx;
+   background-color: rgb(247,247,247);
+}
+.advantage .title text:nth-child(1){
+    font-size: 44rpx;
+    margin-bottom: 20rpx;
+}
+.advantage .title text:nth-child(2){
+    font-size: 29rpx;
+}
+.advantage image{
+  width: 750rpx;
+  height: 374rpx;
+  display: block;
+}

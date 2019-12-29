@@ -176,3 +176,7 @@ movies:[
     </view>
     ````
 - 动态化7大优势傲视群雄及下面的数据。wx:for wx:key item
+## 12.把7大优势及下面的写成模板goodness
+- 在atguigu->goodness->goodness.wxml goodness.wxss
+- 把结构和样式都拆过去。
+- 数据传递，在atguigu.wxml中data="{{...item}}，在goodness.wxml可以直接使用title title2 src

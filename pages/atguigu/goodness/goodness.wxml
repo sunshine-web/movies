@@ -1,0 +1,9 @@
+<template name="goodness">
+  <view class="advantage">
+    <view class="title">
+      <text>{{title}}</text>
+      <text>{{title2}}</text>
+    </view>
+    <image src="{{src}}"></image>
+ </view>
+</template>
