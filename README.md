@@ -203,4 +203,18 @@ movies:[
   ````
   - detail.wxml页面中可以直接使用setData中的数据。
   - 测试：点击之后成功跳转到详情页。
-  
+## 15.微信openid入库
+- 在server的基础上写后台代码
+- 在models中建立模型wx_users.js，实现openid入库，先约束openid
+- 看小程序官方文档 服务端 登录。获取openid的流程：小程序端要带一个code到我们自己的服务端，自己的服务端拿到code对一个地址进行请求，是向微信的服务器发起请求，它会把openid返回给我们的服务端，在我们的服务端可以拿到openid，然后返回给客户端。
+- 看小程序官方文档 框架 框架接口。有生命周期onLaunch监听小程序初始化
+  - 在客户端代码中的app.js中写onLaunch，在这个生命周期函数中进行登录 拿到code 向我们自己的服务器发送请求 让自己的服务器去访问微信的服务器 换取openid。
+    - 在客户端中的app.js中,先调用wx.login拿到code
+    - 向我们自己的服务器发送请求。去写服务器代码。routes中写路由wx_users.js去微信服务器换取openid的getOpenId。在controllers中写控制层wx_users.js，getOpenId，拿到code，微信服务器提供的url，用axios发请求，npm i axios，还需要APPID，SECRET，在app下的config中index.js中配置appId和appSecret。在controllers中引入并用axios发请求拿到openid，让openid写入数据库，把数据库中openid对应的uid(_id)返回给客户端。
+    - npm eun dev启动服务器。
+    - 在客户端中的app.js中向自己的服务器用wx.request发请求，得到uid。
+- 出现问题：客户端每保存一次，就会往数据库中写入一次openid。解决：在客户端中app.js中把拿到的uid保存到缓存中，如果缓存中有uid，就不执行wx.login。
+- 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，在Storage中可看到uid，看数据中保存了openid，再次编译，数据库中还是只保存了一次openid。
+
+
+
