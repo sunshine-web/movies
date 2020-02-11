@@ -228,7 +228,59 @@ movies:[
   - 在routes中写路由saveUserInfo
   - 在controllers中定义saveUserInfo，校验相关信息，拿到请求地址中的uid，更新相关信息并进行签名，返回token
 - 在客户端的index.js中写请求，在userInfo存在的时候，拿到服务器返回的token，并写入到缓存中。
+  - 请求代码
+    ````
+    wx.request({
+        url: `http://localhost:8080/wx_users/${uid}/saveUserInfo`,
+        method: 'post',
+        data: ev.detail.userInfo,
+        success:(res) => {
+          wx.setStorageSync("token", res.data.token);
+        }
+      })
+    ````
 - 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，点击微信登录，弹出的框，如果点击拒绝，数据库不会有头像，用户名等相关信息;点击允许，头像，用户名等相关信息才会写入数据库。
-
-
-
+## 17.微信登录功能
+- 在用户授权过之后微信登录这个按钮不应该再出现
+   - 在index.js中写data hasUserInfo:false//true:代表用户已经授权过，false：用户没有授权
+   - 在请求成功拿到token后，修改
+   ````
+  this.setData({
+      hasUserInfo:true
+    })
+   ````
+   - 在index.wxml中的button按钮上wx:if="{{!hasUserInfo}}"
+- 点击微信登录授权后应该显示用户头像和昵称
+   - 在index.wxml中写结构
+   - 在index.js中定义data数据userInfo为对象
+   - 在请求成功拿到token后，修改
+  ````
+   this.setData({
+     hasUserInfo:true,
+     userInfo: ev.detail.userInfo
+   })
+  ````
+   - 在index.wxml中的view上wx:else，其中的image和text可以直接用{{}}显示userInfo中的数据
+   - 在index.wxss中修改样式
+- 测试：编译后出现微信登录，点击授权后出现用户头像和用户名
+- 出现问题：每次编译后都出现用户登录，应该在用户授权后不出现用户登录，直接显示用户名和头像
+  - 解决：点击用户授权之后，可以通过wx.getUserInfo这个api拿到用户信息。
+    - 在app.js中的onLaunch这个生命周期中 在用户已经授权过的情况下能得到用户信息。
+    - 在globalData中初始化userInfo为null，用户授权过把userInfo赋值过来。
+    - 思路：在app.js中onLaunch这个生命周期判断有没有userInfo，如果有代表已经授权过，就不显示微信登录按钮，如果没有就显示微信登录按钮。
+      - 要让app.js和index.js做交互，在index.js中拿到globalData中的数据，在onLoad这个生命周期中判断是否有userInfo，如果有修改hasUserInfo和userInfo
+      - 问题：app.js中给userInfo赋值的success回调是异步的，是这个回调先执行还是index.js中的onload先执行
+        - 确保当前这个回调一定在index.js的onLoad之前执行。解决index.js的onLoad先执行
+        - 在index.js中如果没有app.globalData.userInfo，会有两种情况有可能用户没有授权和有可能用户授权了，只是onLoad在app.js中的success前调用了
+          - 避免第二种情况，在index.js中给app绑userInfoReadyCallback方法，修改hasUserInfo和userInfo，如果onLoad先执行，就会有userInfoReadyCallback方法，在app.js中判断如果有这个方法，就把res传过去再次调用。
+  - 测试：在用户授权之后直接显示用户名和头像，不显示用户登录 
+- 实现点击用户头像跳转到硅谷主页
+  - 在index.wxml中给image绑定bind:tap="toAtguigu"，在index.js中实现点击头像跳转到tabBar页面
+  ````
+  toAtguigu(){
+      wx.switchTab({
+        url: '/pages/atguigu/atguigu',
+      })
+    }
+  ````
+- 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，点击微信登录，可看到头像，点击头像跳转到硅谷主页。再次编译，点击头像，跳转到硅谷主页。
