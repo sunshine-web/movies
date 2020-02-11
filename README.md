@@ -215,6 +215,20 @@ movies:[
     - 在客户端中的app.js中向自己的服务器用wx.request发请求，得到uid。
 - 出现问题：客户端每保存一次，就会往数据库中写入一次openid。解决：在客户端中app.js中把拿到的uid保存到缓存中，如果缓存中有uid，就不执行wx.login。
 - 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，在Storage中可看到uid，看数据中保存了openid，再次编译，数据库中还是只保存了一次openid。
+## 16.微信userinfo入库
+- 出现问题：如果把客户端缓存中的uid清除掉，再次编译，还是会向数据库中写入数据，但是现在数据库中已经有openid了。解决：在服务端代码的controllers中，在写入数据库之前先查一下数据库中有没有openid，如果没有，在进行写入数据库。
+- 不但要把openid入库，还有把userInfo(用户名，头像等)入库
+- userInfo入库的流程：客户端通过api拿到微信服务器给我们的用户信息userInfo，把信息给自己的服务器，自己的服务器把userInfo入库。
+- 写客户端代码，在pages下新建目录index，新建Page index。打开app.json把新建的index写到最上面，保存出现这个页面。
+  - 在index.wxml中写按钮button组件
+  - 实现点击当前按钮时 获取到微信用户的相关信息 存入到我们自己的数据库
+    - 拿到用户信息 发给我们的服务器 服务器负责保存
+  - button中open-type属性是微信的开放能力，bindgetuserinfo会返回获取到的用户信息，open-type="getUserInfo"时有效。在index.js中写bindgetuserinfo的回调函数getUserInfo，打印ev，会在detail中看到userInfo，里面包含用户头像，昵称等。
+- 需要将userInfo写入数据库，在服务端中的模型中写中相关信息的校验。
+  - 在routes中写路由saveUserInfo
+  - 在controllers中定义saveUserInfo，校验相关信息，拿到请求地址中的uid，更新相关信息并进行签名，返回token
+- 在客户端的index.js中写请求，在userInfo存在的时候，拿到服务器返回的token，并写入到缓存中。
+- 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，点击微信登录，弹出的框，如果点击拒绝，数据库不会有头像，用户名等相关信息;点击允许，头像，用户名等相关信息才会写入数据库。
 
 
 
