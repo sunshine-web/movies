@@ -1,5 +1,6 @@
 // pages/index/index.js
 const app = getApp();
+import store from '../../utils/store.js';
 
 Page({
   data:{
@@ -28,13 +29,15 @@ Page({
   getUserInfo(ev){
     //点击拒绝 ev.detail.userInfo undefined
     if (ev.detail.userInfo){
-      const uid = wx.getStorageSync("uid");
+      // const uid = wx.getStorageSync("uid");
+      const uid = store.getItem("uid","userInfo");
       wx.request({
         url: `http://localhost:8080/wx_users/${uid}/saveUserInfo`,
         method: 'post',
         data: ev.detail.userInfo,
         success:(res) => {
-          wx.setStorageSync("token", res.data.token);
+          // wx.setStorageSync("token", res.data.token);
+          store.setItem("token",res.data.token,"userInfo")
           this.setData({
             hasUserInfo:true,
             userInfo: ev.detail.userInfo
