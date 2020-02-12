@@ -305,3 +305,48 @@ movies:[
 - 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，看Storage中有userInfo value中有uid
   - 点击微信登录 允许 看Storage中有userInfo value中有uid token
   - 再次编译 看到用户头像 点击用户头像 跳转到硅谷主页
+## 19.封装router.js
+- 新建目录routes->index.js写路由
+- 在utils下新建router.js定义路由器
+  - router.js需求 实现以下几种方式的路由跳转
+  ````
+  router.push("atguigu")
+  router.push("atguigu",{
+    query:{
+      a:"a",
+      b:"b",
+      type:"switchTab",
+      duration:3000//毫秒值
+    }
+  })
+  router.push({
+    path:"atguigu",
+    query: {
+      a: "a",
+      b: "b",
+      type: "switchTab",
+      duration: 3000//毫秒值
+    }
+  })
+  ````
+  - 在utils->router.js中根据需求设计代码
+  - 定义push
+    - 打平所有调用方式的差异 
+      - 思路：先判断第一个参数的类型 如果是string 说明是前两种 把它挂载到option中 按照第三种方式处理；否则是第三种方式传的，path拿到的是对象 把它直接给option。
+    - 将option中的配置项一一取出
+      - 定义parseQuery，将一个query对象转成一个query字符串，把传的query参数拼接到路由后面，得到真正的路由地址
+      - 看是否传了延迟跳转时间，如果传了用定时器延迟后跳转 否则直接跳转
+      - 定义跳转路由的方法to 包含switchTab reLaunch navigateTo等
+  - 在page中的index下的index.js中引入router.js使用router.push跳转到硅谷主页
+  - 测试：点击用户头像 跳转到硅谷主页
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

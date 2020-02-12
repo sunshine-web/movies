@@ -1,6 +1,7 @@
 // pages/index/index.js
 const app = getApp();
 import store from '../../utils/store.js';
+import router from '../../utils/router.js';
 
 Page({
   data:{
@@ -47,8 +48,11 @@ Page({
     }
   },
   toAtguigu(){
-    wx.switchTab({
-      url: '/pages/atguigu/atguigu',
+    // wx.switchTab({
+    //   url: '/pages/atguigu/atguigu',
+    // })
+    router.push("atguigu",{
+      type:"switchTab"
     })
   }
 })
