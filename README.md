@@ -339,7 +339,46 @@ movies:[
       - 定义跳转路由的方法to 包含switchTab reLaunch navigateTo等
   - 在page中的index下的index.js中引入router.js使用router.push跳转到硅谷主页
   - 测试：点击用户头像 跳转到硅谷主页
-    
+## 20.完成http.js
+- 在全局新建目录api->index.js存放请求的地址
+- 在全局新建目录config->index.js存放小程序的名称 版本 环境 基地址等
+- 在utils中新建http.js用来发请求
+  - 发送请求的主体方法request
+    - request参数
+      - url:接口地址(不带基地址) 
+      - data:携带的数据 
+      - option:{loading,isMock,header}
+        - option.loading:是否出现loading图标
+        - option.isMock:弃用环境 使用mock地址
+        - option.header:请求头
+  - 处理url，先看是否是第三方接口(第三方基地址拼上api中的url)，如果不是第三方接口，判断是否使用mock接口，否则使用生产或者开发环境的基地址
+  - 处理option.header
+    - 在utils->util.js中写获取平台信息的工具类getSystemInfo返回wx.getSystemInfoSync()，在http.js中引入使用
+    - 参数header和BaseHeader的合并，上npm，找weapp-utils用于合并对象
+      - 在根目录下npm init -y出来sitemap.json文件，下包npm install --save weapp-utils
+      - 下载包后在根目录下会有个node_modules，但是在微信开发者工具下看不到node_modules，点击上面的工具 构建npm出现miniprogram_npm，才可以在小程序中使用npm包
+      - 在http.js中引入import { merge } from 'weapp-utils'，使用它的merge方法进行合并对象
+  - 请求开始显示loading图标
+  ````
+  wx.showLoading({
+    title: 'loading...',
+    mask:true
+  })
+  ````
+  - 处理wx.request中请求成功的success，如果statusCode状态码为200或者204关闭loading，返回成功的promise，否则用showToast提示接口调用失败，返回失败的promise
+  - 处理wx.request中请求失败的fail，用showToast提示请求失败，返回失败的promise
+  - 在app.js中引入utils下的http.js并使用
+  - 测试1：在微信开发者工具中清缓存，编译客户端代码，点击微信登录 允许
+    - 报错：thirdScriptError regeneratorRuntime is not defined，原因是在app.js中async是给微信内部的success使用的，微信觉得这么做不行
+    - 点击微信开发者工具右上角，本地设置中勾选上ES6转ES5 使用npm模块
+    - 安装包npm i regenerator@0.13.1，下载完包后点击微信开发者工具上的工具->构建npm
+    - 在app.js中引入regenerator-runtime下的index.js
+    - 在微信开发者工具中清缓存，编译客户端代码，点击微信登录 允许，出现用户头像，点击用户头像 跳转到硅谷主页
+    - 在index->index.js中引入utils下的http.js并使用
+  - 测试2：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码， 点击微信登录报错regeneratorRuntime is not defined，点击右上角->详情 调式基础库 2.10.1，再次编译，出来用户头像 点击用户头像 跳转到硅谷主页。清缓存后第一次编译报错 暂时归结为开发工具问题
+  
+  
+  
     
     
     

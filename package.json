@@ -1,0 +1,24 @@
+{
+  "name": "movies",
+  "version": "1.0.0",
+  "description": "- pages->atguigu硅谷主页\r - pages->movies硅谷电影\r   - 模板\r      - pages->movies->row行\r      - pages->movies->row->item个\r      - pages->movies->row->item->stars星星\r - 测试：模板和硅谷电影之间关系起来\r ````\r row.wxml\r <template name=\"row\">\r <text class=\"row\">row</text>\r </template>\r movies.wxml\r <import src=\"./row/row\" />\r <template is=\"row\"></template>",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunshine-web/movies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunshine-web/movies/issues"
+  },
+  "homepage": "https://github.com/sunshine-web/movies#readme",
+  "dependencies": {
+    "regenerator": "^0.13.1",
+    "weapp-utils": "^1.0.3"
+  }
+}

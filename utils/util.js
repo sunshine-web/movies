@@ -52,8 +52,14 @@ const http = (url, callBack,...arg)=>{
   })
 }
 
+//获取平台信息
+const getSystemInfo = ()=>{
+  return wx.getSystemInfoSync();
+}
+
 module.exports = {
   formatTime: formatTime,
   getStarsArr: getStarsArr,
-  http: http
+  http: http,
+  getSystemInfo: getSystemInfo
 }
