@@ -376,8 +376,23 @@ movies:[
     - 在微信开发者工具中清缓存，编译客户端代码，点击微信登录 允许，出现用户头像，点击用户头像 跳转到硅谷主页
     - 在index->index.js中引入utils下的http.js并使用
   - 测试2：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码， 点击微信登录报错regeneratorRuntime is not defined，点击右上角->详情 调式基础库 2.10.1，再次编译，出来用户头像 点击用户头像 跳转到硅谷主页。清缓存后第一次编译报错 暂时归结为开发工具问题
-  
-  
+## 21.解决bug
+- 编译客户端代码， 点击微信登录报错regeneratorRuntime is not defined。点击微信登录 允许 数据库中也没有拿到微信头像，用户名等相关信息。
+  - 原因：api->index.js在app.js中被引入解析，解析时onLaunch还没有执行，setItem没有把uid写进去，也就是说api->index.js在onLaunch之前被解析，此时api->index.js中的uid获取不到，导致saveUserInfo这个请求出错，所以数据库中拿不到微信头像，用户名等相关信息
+  - 解决方案：api中如果有动态拼接的接口地址，需要使用函数的形式往外提供
+    - 在api->index.js中的saveUserInfo里获取uid，并把地址返回出去
+    ````
+      saveUserInfo(){
+        //这个uid才会有效
+        const uid = store.getItem("uid", "userInfo");
+        return `/wx_users/${uid}/saveUserInfo`;
+      }
+    ````
+    - 在pages->index->index.js中使用saveUserInfo，api.saveUserInfo()
+  - js文件中使用async await都要引用regeneratorRuntime解决报错
+  - 在utils->http.js中success请求成功返回的是res.data,所以在index->index.js中await返回的是data，直接拿到token
+- 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，看到Storage中有uid，数据库中有openid；点击微信登录 允许，看到Storage中有token，数据库中有用户头像 用户名等相关信息；点击用户头像跳转到硅谷主页
+
   
     
     

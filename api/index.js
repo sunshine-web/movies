@@ -1,6 +1,11 @@
 import store from '../utils/store.js';
-const uid = store.getItem("uid", "userInfo");
+//uid到底能不能获取到 uid是获取不到的
+// const uid = store.getItem("uid", "userInfo");
 export default{
   getOpenId: `/wx_users/getOpenId`,
-  saveUserInfo: `/wx_users/${uid}/saveUserInfo`
+  saveUserInfo(){
+    //这个uid才会有效
+    const uid = store.getItem("uid", "userInfo");
+    return `/wx_users/${uid}/saveUserInfo`;
+  }
 }

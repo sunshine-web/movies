@@ -4,7 +4,7 @@ import store from '../../utils/store.js';
 import router from '../../utils/router.js';
 import http from '../../utils/http.js';
 import api from '../../api/index.js';
-
+import regeneratorRuntime from 'regenerator-runtime/index.js';
 Page({
   data:{
     hasUserInfo:false,//true:代表用户已经授权过，false：用户没有授权
@@ -34,8 +34,8 @@ Page({
     if (ev.detail.userInfo){
       // const uid = wx.getStorageSync("uid");
       const uid = store.getItem("uid","userInfo");
-      await http.post(api.saveUserInfo, ev.detail.userInfo)
-      store.setItem("token", res.data.token, "userInfo")
+      const data = await http.post(api.saveUserInfo(), ev.detail.userInfo)
+      store.setItem("token", data.token, "userInfo")
       this.setData({
         hasUserInfo: true,
         userInfo: ev.detail.userInfo
