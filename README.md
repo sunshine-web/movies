@@ -392,7 +392,20 @@ movies:[
   - js文件中使用async await都要引用regeneratorRuntime解决报错
   - 在utils->http.js中success请求成功返回的是res.data,所以在index->index.js中await返回的是data，直接拿到token
 - 测试：在微信开发者工具中清缓存，删除数据库中的数据。编译客户端代码，看到Storage中有uid，数据库中有openid；点击微信登录 允许，看到Storage中有token，数据库中有用户头像 用户名等相关信息；点击用户头像跳转到硅谷主页
-
+## 22.总结微信自动登录 获取用户信息的方式 实现公共模块
+- 微信自动登录
+  - openid要入库(在整个微信小程序启动时入库  app.js中onLaunch)
+  - 微信的用户信息要入库(在pages->index->index.js界面被渲染的时候入库 onload中)
+- 获取用户信息的方式
+  - <open-data type="userNickName"></open-data> 只能在.wxml中文件中写，在页面上显示，小程序没有dom操作，显示的数据是拿不到的，没有办法做入库操作
+  - <button open-type='getUserInfo' bindgetuserinfo = 'getUserInfo' ></button >;
+    - 点击这个按钮时 我们可以在getUserInfo回调中通过ev.detail.userInfo拿到用户信息 
+    - 体验缺陷 需要用户点击按钮
+  - wx.getUserInfo() 去获取用户信息 不需要任何点击；前提:必须授权过(wx.getSetting来判断)
+- 实现了几个公共模块
+  - 缓存的公共存储 utils->store.js
+  - 路由的搭建 utils->router.js
+  - http请求的promise化 utils->http.js
   
     
     
